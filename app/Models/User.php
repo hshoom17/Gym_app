@@ -45,4 +45,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+        public function branches(){
+            return $this->hasOne(Branch::class);//->where('role', UserRoles::RESTAURANT);
+        }
+
+        public function coaches(){
+            return $this->hasOne(Coach::class);
+        }
+
+        public function customers(){
+            return $this->hasOne(Customer::class);
+        }
 }

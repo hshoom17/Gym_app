@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('en_name');
+            $table->string('ar_name');
+            $table->double('price');
+            $table->string('image');
+            $table->text('description');
+            $table->foreignId('customer_id')->constrained('customers'); 
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

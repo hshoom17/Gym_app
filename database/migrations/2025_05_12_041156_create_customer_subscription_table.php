@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('customer_subscription', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('subscription_id')->constrained('subscriptions');
+            
+
             $table->timestamps();
+            $table->softDeletes();
+
+           
         });
     }
 

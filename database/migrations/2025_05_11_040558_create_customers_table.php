@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->double('height');
+            $table->double('weight');
+            $table->foreignId('user_id')->constrained('users');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

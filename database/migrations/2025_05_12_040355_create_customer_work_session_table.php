@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customer_work_session', function (Blueprint $table) {
+        Schema::create('customer_workout_session', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('workout_session_id')->constrained('workout_sessions');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customer_work_session');
+        Schema::dropIfExists('customer_workout_session');
     }
 };
