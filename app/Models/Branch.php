@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
 {
     public function owner(){
-            return $this->belongsTo(User::class);//->where('role', UserRoles::RESTAURANT);
+            return $this->belongsTo(User::class)->where('role',UserRoles::BRANCH);
         
     }
     public function product(){

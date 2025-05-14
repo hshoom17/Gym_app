@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('price');
             $table->string('status');
             $table->string('image');
-            $table->foreignId('branch_id')->constrained('branches'); 
+            $table->foreignId('branch_id')->constrained('branches');//->cascadeOnDelete();
             
             $table->timestamps();
             $table->softDeletes();

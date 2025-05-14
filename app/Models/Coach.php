@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Model;
 
 class Coach extends Model
@@ -10,7 +11,7 @@ class Coach extends Model
             return $this->belongsTo(User::class);
             }
         public function branch(){
-            return $this->belongsTo(Branch::class);
+            return $this->belongsTo(Branch::class)->where('role',UserRoles::BRANCH);
                     }
         public function workoutSession(){
             return $this->hasMany(WorkoutSession::class);

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,9 +20,14 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'en_name',
+        'ar_name',
+        'dial_cod',
+        'phone',
         'email',
         'password',
+        'role',
+        'status'
     ];
 
     /**
@@ -47,7 +54,7 @@ class User extends Authenticatable
     }
 
         public function branches(){
-            return $this->hasOne(Branch::class);//->where('role', UserRoles::RESTAURANT);
+            return $this->hasOne(Branch::class)->where('role',UserRoles::BRANCH);
         }
 
         public function coaches(){
@@ -55,6 +62,6 @@ class User extends Authenticatable
         }
 
         public function customers(){
-            return $this->hasOne(Customer::class);
+            return $this->hasOne(Customer::class)->where('role',UserRoles::CUSTOMER);
         }
 }
