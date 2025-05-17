@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps('start_date');
-            $table->timestamps('end_date');
-            //$table->type('type');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->double('price');
             $table->string('status');
 

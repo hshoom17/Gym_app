@@ -20,14 +20,20 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'en_name',
-        'ar_name',
-        'dial_cod',
-        'phone',
-        'email',
-        'password',
-        'role',
-        'status'
+            'en_name',
+'ar_name',
+'email',
+'email_verified_at',
+'dial_cod',
+'phone',
+'password',
+'role',
+'status',
+'birthday',
+'gender',
+'adress',
+'image',
+'reg_date',
     ];
 
     /**
@@ -54,7 +60,7 @@ class User extends Authenticatable
     }
 
         public function branches(){
-            return $this->hasOne(Branch::class)->where('role',UserRoles::BRANCH);
+            return $this->hasOne(Branch::class);//->where('role',UserRoles::BRANCH);
         }
 
         public function coaches(){

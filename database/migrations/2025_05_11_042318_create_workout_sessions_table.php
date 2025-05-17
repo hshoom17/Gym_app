@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('workout_sessions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps('start_date');
-            $table->timestamps('end_date');
-            //$table->type('type');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
+            $table->string('type');
             $table->foreignId('branch_id')->constrained('branches');
             $table->foreignId('coach_id')->constrained('coaches');
 

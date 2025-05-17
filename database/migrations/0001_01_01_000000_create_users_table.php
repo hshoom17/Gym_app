@@ -17,16 +17,16 @@ return new class extends Migration
             $table->string('ar_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('dial_cod');
-            $table->integer('phone');
             $table->string('password');
+            $table->string('dial_cod');
+            $table->string('phone');
             $table->string('role');
             $table->string('status');
-            $table->timestamp('birthday');
+            $table->dateTime('birthday');
             $table->string('gender');
             $table->longText('adress');
             $table->string('image');
-            $table->timestamp('reg_date');
+            $table->dateTime('reg_date');
 
             $table->rememberToken();
             $table->timestamps();

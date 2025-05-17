@@ -4,11 +4,15 @@ namespace App\Models;
 
 use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
 class Branch extends Model
-{
+
+{       use HasFactory, Notifiable;
+
     public function owner(){
-            return $this->belongsTo(User::class)->where('role',UserRoles::BRANCH);
+            return $this->belongsTo(User::class);//->where('role',UserRoles::BRANCH);
         
     }
     public function product(){

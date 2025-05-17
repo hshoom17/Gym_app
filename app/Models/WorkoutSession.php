@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Enums\UserRoles;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class WorkoutSession extends Model
-{
+{   use HasFactory;
         public function branch(){
-            return $this->belongsTo(Branch::class)->where('role',UserRoles::BRANCH);
+            return $this->belongsTo(Branch::class);//->where('role',UserRoles::BRANCH);
             }
         public function coaches(){
             return $this->belongsTo(Coach::class);}
