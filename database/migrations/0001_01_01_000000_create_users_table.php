@@ -22,11 +22,11 @@ return new class extends Migration
             $table->string('phone');
             $table->string('role');
             $table->string('status');
-            $table->dateTime('birthday');
-            $table->string('gender');
-            $table->longText('adress');
-            $table->string('image');
-            $table->dateTime('reg_date');
+            $table->dateTime('birthday')->nullable();
+            $table->string('gender')->nullable();
+            $table->longText('adress')->nullable();
+            $table->string('image')->nullable();
+            $table->dateTime('reg_date')->nullable();
 
             $table->rememberToken();
             $table->timestamps();
