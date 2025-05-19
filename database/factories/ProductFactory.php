@@ -3,9 +3,11 @@
 namespace Database\Factories;
 
 use App\Enums\UserRoles;
+use App\Enums\UserStatus;
 use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
@@ -25,7 +27,7 @@ class ProductFactory extends Factory
             'price'=>fake()->randomFloat(),
             'image'=>fake()->imageUrl(),
             'description' => fake()->paragraph(),
-            'status'=>array_rand(UserRoles::all()),
+            'status'=>Arr::random(UserStatus::cases())->value,
             'branch_id' => Branch::factory(),
         ];
     }

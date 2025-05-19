@@ -5,9 +5,17 @@ namespace App\Models;
 use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\Cast;
 
 class WorkoutSession extends Model
 {   use HasFactory;
+    protected function casts(): array
+    {
+        return [
+            
+            'role' => UserRoles::class,
+        ];
+    }
         public function branch(){
             return $this->belongsTo(Branch::class);//->where('role',UserRoles::BRANCH);
             }

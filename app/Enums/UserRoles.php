@@ -15,11 +15,5 @@ enum UserRoles : string
             self::COACH => "coach",
         };
     }
-        public static function all() : array{
-        return  [
-            self::ADMIN ,
-            self::CUSTOMER ,
-            self::COACH ,
-        ];
-    }
+
 }

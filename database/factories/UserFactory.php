@@ -6,6 +6,7 @@ use App\Enums\UserRoles;
 use App\Enums\UserStatus;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -35,8 +36,8 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'dial_cod'=> fake()->numberBetween(1, 1000),
             'phone'=>fake()->phoneNumber(),
-            'role'=>array_rand(UserRoles::all()),
-            'status'=>array_rand(UserStatus::all()),
+            'role'=>Arr::random(UserRoles::cases())->value,
+            'status'=>Arr::random(UserStatus::cases())->value,
             'birthday'=>fake()->dateTime(),
             'gender'=>array_rand(['male','female']),
             'adress'=> 'KSA',

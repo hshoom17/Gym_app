@@ -7,6 +7,7 @@ use App\Models\Branch;
 use App\Models\Coach;
 use App\Models\WorkoutSession;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\WorkoutSession>
@@ -23,7 +24,7 @@ class WorkoutSessionFactory extends Factory
         return [
             'start_date'=>fake()->dateTime(),
             'end_date'=>fake()->dateTime(),
-            'type'=>array_rand(WorkoutSessionsType::all()),
+            'type'=>Arr::random(WorkoutSessionsType::cases())->value,
             'branch_id' => Branch::factory(),
             'coach_id' => Coach::factory(),
         ];

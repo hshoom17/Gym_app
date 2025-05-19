@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Enums\UserRoles;
+use App\Enums\UserStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\subscription>
@@ -21,7 +23,7 @@ class subscriptionFactory extends Factory
             'start_date'=>fake()->dateTime(),
             'end_date'=>fake()->dateTime(),
             'price'=>fake()->randomFloat(),
-            'status'=>array_rand(UserRoles::all()),
+            'status'=>Arr::random(UserStatus::cases())->value,
         ];
     }
 }

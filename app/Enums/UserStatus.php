@@ -13,11 +13,5 @@ enum UserStatus : string
             self::INACTIVE => "Inactive",
         };
     }
-            public static function all() : array{
-        return  [
-            self::ACTIVE ,
-            self::INACTIVE ,
-            
-        ];
-    }
+
 }

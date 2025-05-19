@@ -15,11 +15,6 @@ enum WorkoutSessionsType : string
             self::CROSSFIT => "croosfit",
         };
     }
-        public static function all() : array{
-        return  [
-            self::FITNESS ,
-            self::Cardio ,
-            self::CROSSFIT ,
-        ];
-    }
+
+    
 }
