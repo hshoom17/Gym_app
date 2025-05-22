@@ -11,18 +11,18 @@ use Inertia\Inertia;
 class CoachController extends Controller
 
     {
-      public function index()
+    public function index()
     {
-        return Inertia::render('coaches/Index', [
+        return Inertia::render('Coaches/Index', [
             'coaches' => Coach::all(),
         ]);
     }
  
     public function create()
     {
-        return Inertia::render('coaches/Create');
+        return Inertia::render('Coaches/Create');
     }
- 
+
     public function store(StoreCoachRequest $request)
     {
         Coach::create($request->validated());
@@ -32,7 +32,7 @@ class CoachController extends Controller
  
     public function edit(Coach $coach)
     {
-        return Inertia::render('coaches/Edit', [
+        return Inertia::render('Coaches/Edit', [
             'coach' => $coach,
         ]);
     }

@@ -1,3 +1,6 @@
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Head } from '@inertiajs/react';
+
 import {
   Table,
   TableBody,
@@ -6,27 +9,40 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/Components/ui/table"
-export default function Dashboard() {
+} from "@/Components/ui/table";
+export default function Index() {
     return (
-<Table>
-  <TableCaption>A list of your recent invoices.</TableCaption>
-  <TableHeader>
-    <TableRow>
-      <TableHead className="w-[100px]">Invoice</TableHead>
-      <TableHead>Status</TableHead>
-      <TableHead>Method</TableHead>
-      <TableHead className="text-right">Amount</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell className="font-medium">INV001</TableCell>
-      <TableCell>Paid</TableCell>
-      <TableCell>Credit Card</TableCell>
-      <TableCell className="text-right">$250.00</TableCell>
-    </TableRow>
-  </TableBody>
-</Table>
+
+      <AuthenticatedLayout
+                  header={
+                      <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                          Dashboard
+                      </h2>
+                  }
+              >
+                  <Head title="Dashboard" />
+                  <div id="body">
+                      <Table>
+                        <TableCaption>A list of your recent invoices.</TableCaption>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="w-[100px]">Invoice</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead>Method</TableHead>
+                            <TableHead className="text-right">Amount</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow>
+                            <TableCell className="font-medium">INV001</TableCell>
+                            <TableCell>Paid</TableCell>
+                            <TableCell>Credit Card</TableCell>
+                            <TableCell className="text-right">$250.00</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                  </div>
+      </AuthenticatedLayout>
+
     )
   }
