@@ -7,6 +7,7 @@ import { Input } from "@/Components/ui/input"
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
+import { Toaster } from '@/Components/ui/sonner';
 
 export default function Authenticated({
     header,
@@ -22,6 +23,7 @@ export default function Authenticated({
             <AppSidebar />
             <SidebarTrigger />
                 <main className=' flex-1'>{children}</main>
+                <Toaster position={'top-right'} />
             {/* </div> */}
     </SidebarProvider>
 
