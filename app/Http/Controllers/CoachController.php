@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCoachRequest;
 use App\Http\Requests\UpdateCoachRequest;
+use App\Http\Resources\CoachResource;
 use App\Models\Coach;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,8 +14,11 @@ class CoachController extends Controller
     {
     public function index()
     {
+
+        $coach=Coach::with('user')->get();
+        // dd(Coach::with(['user', 'branch', 'workoutSession'])->get()->toArray());
         return Inertia::render('Coaches/Index', [
-            'coaches' => Coach::all(),
+            'coaches' => $coach, 
         ]);
     }
  

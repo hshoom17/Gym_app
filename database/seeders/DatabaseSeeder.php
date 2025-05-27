@@ -22,8 +22,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         Branch::factory(10)->create();
-        Customer::factory(10)->has(Order::factory()->count(5))->create();
-        Order::factory(10)->has(Product::factory()->count(5))->create();
+        Customer::factory(10)->has(Order::factory()->count(5)->has(Product::factory()->count(5)))->create();
         Coach::factory(10)->create();
         Product::factory(10)->create();
         Subscription::factory(10)->create();
