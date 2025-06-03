@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserRoles;
 use App\Enums\UserStatus;
-use App\Http\Requests\StoreCoachRequest;
-use App\Http\Requests\UpdateCoachRequest;
+use App\Http\Requests\Coach\StoreCoachRequest;
+use App\Http\Requests\Coach\UpdateCoachRequest;
 use App\Http\Resources\CoachResource;
 use App\Models\Branch;
 use App\Models\Coach;
@@ -43,8 +43,8 @@ class CoachController extends Controller
             'password' => Hash::make($request->password),
             'dial_cod' => $request->dial_cod,
             'phone' => $request->phone,
-            'role' => UserRoles::COACH->value,
-            'status' => UserStatus::ACTIVE->value,
+            'role' => UserRoles::COACH,
+            'status' => UserStatus::ACTIVE,
 
         ]);
         $coach= $user->coach()->create(['CV'=> 'gg','branch_id'=>1]);
