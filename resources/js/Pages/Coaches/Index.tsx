@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, router } from '@inertiajs/react';
-import { Coach } from "@/types";
+import { Head, Link, router } from '@inertiajs/react';
+import { type Coach,  type BreadcrumbItem } from "@/types";
 import {
   Table,
   TableBody,
@@ -17,14 +17,23 @@ export default function Index({ coaches }: { coaches: Coach[] }) {
   const deleteCoach = (id: number) => { 
         if (confirm('Are you sure?')) {
             router.delete(route('coaches.destroy', { id }));
-             toast.success('Task deleted successfully');
+             toast.success('Coach deleted successfully');
         }
     }; 
+    const breadcrumbs: BreadcrumbItem[] = [
+    { title: 'Dashboard', href: '/dashboard' },
+    { title: 'Coaches', href: '/coaches' },
+];
     return (
       <AuthenticatedLayout
                   header={
                       <h2 className="text-xl font-semibold leading-tight text-gray-800">Dashboard</h2>}>
                   <Head title="Dashboard" />
+                  <div className={'mt-8'}>
+                  <Link className={buttonVariants({ variant: 'outline' })} href="/coaches/create">
+                          Create Coach
+                      </Link>
+                      
                   <div id="body">
                     <Table>
                     {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
@@ -39,13 +48,19 @@ export default function Index({ coaches }: { coaches: Coach[] }) {
                     </TableHeader>
                     <TableBody>
                         {coaches.map((coach) => (
-                          <TableRow key={coach.id}>
+                          <TableRow key={coach.user.id}>
                               <TableCell>{coach.user.en_name}</TableCell>
                               <TableCell>{coach.user.email}</TableCell>
                               <TableCell>{coach.user.phone}</TableCell>
                               <TableCell><img width="75" height="75" src={`${coach.CV}`} alt="" /> </TableCell>
                               <TableCell className="flex flex-row gap-x-2 text-right">
-            <Button variant={'destructive'} className={'cursor-pointer'} onClick={() => deleteCoach(coach.id)}>
+             <Link className={buttonVariants({ variant: 'default' })}
+                  href={`/coaches/${coach.id}/edit`}>
+                Edit
+            </Link>
+ 
+            <Button variant={'destructive'} className={'cursor-pointer'}
+                    onClick={() => deleteCoach(coach.id)}>
                 Delete
             </Button>
         </TableCell>
@@ -53,6 +68,7 @@ export default function Index({ coaches }: { coaches: Coach[] }) {
                         ))}
                     </TableBody>
                   </Table>
+                  </div>
                   </div>
       </AuthenticatedLayout>
 

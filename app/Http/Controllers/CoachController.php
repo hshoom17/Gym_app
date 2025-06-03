@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRoles;
+use App\Enums\UserStatus;
 use App\Http\Requests\StoreCoachRequest;
 use App\Http\Requests\UpdateCoachRequest;
 use App\Http\Resources\CoachResource;
+use App\Models\Branch;
 use App\Models\Coach;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class CoachController extends Controller
@@ -15,10 +20,12 @@ class CoachController extends Controller
     public function index()
     {
 
-        $coach=Coach::with('user')->get();
-        // dd(Coach::with(['user', 'branch', 'workoutSession'])->get()->toArray());
+        $coach=Coach::with(['user:id,email,phone,en_name','branch'])->get();
+        // $branches=Branch::select('id','en_name')->get();
+        // dd($coach->toArray());
         return Inertia::render('Coaches/Index', [
             'coaches' => $coach, 
+            // 'branches' => $branches,
         ]);
     }
  
@@ -28,23 +35,44 @@ class CoachController extends Controller
     }
 
     public function store(StoreCoachRequest $request)
-    {
-        Coach::create($request->validated());
- 
+    {   
+        $user =User::create([
+            'en_name' => $request->en_name,
+            'ar_name' => $request->ar_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'dial_cod' => $request->dial_cod,
+            'phone' => $request->phone,
+            'role' => UserRoles::COACH->value,
+            'status' => UserStatus::ACTIVE->value,
+
+        ]);
+        $coach= $user->coach()->create(['CV'=> 'gg','branch_id'=>1]);
+
+
+        
+        if ($request->hasFile('CV')) { 
+        $coach->addMedia($request->file('CV'))->toMediaCollection(); 
+        }
+    
         return redirect()->route('coaches.index');
     }
+
  
     public function edit(Coach $coach)
-    {
+    {   
+        $coach->load('user');
         return Inertia::render('Coaches/Edit', [
             'coach' => $coach,
+
         ]);
     }
  
     public function update(UpdateCoachRequest $request, Coach $coach)
     {
-        $coach->update($request->validated());
- 
+        
+        $coach->user->update($request->validated());
+        
         return redirect()->route('coaches.index');
     }
  

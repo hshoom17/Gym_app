@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('coaches', function (Blueprint $table) {
             $table->id();
             //$table->type('type');
-            $table->string('CV');
+            $table->string('CV')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('branch_id')->constrained('branches');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

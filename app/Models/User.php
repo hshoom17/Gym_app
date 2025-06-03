@@ -66,7 +66,7 @@ class User extends Authenticatable
             return $this->hasOne(Branch::class);//->where('role',UserRoles::BRANCH);
         }
 
-        public function coaches(){
+        public function coach(){
             return $this->hasOne(Coach::class);
         }
 

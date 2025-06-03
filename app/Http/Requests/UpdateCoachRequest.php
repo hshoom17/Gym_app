@@ -11,7 +11,7 @@ class UpdateCoachRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateCoachRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'en_name' => ['required', 'string', 'max:255'],
+            'ar_name' => [ 'string', 'max:255'],
+            'email',
+            'password' ,
+            'dial_cod' ,
+            'phone' ,
+            'role' ,
+            'status' ,
         ];
     }
 }

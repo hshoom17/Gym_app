@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Models;
-
+use Spatie\MediaLibrary\HasMedia; 
+use Spatie\MediaLibrary\InteractsWithMedia; 
 use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Coach extends Model
-{       
-    use HasFactory;
+class Coach extends Model implements HasMedia
+{    
+    use SoftDeletes;
+    protected $fillable = [
+            'CV',
+            'branch_id',
+            'user_id'
+            ];   
+    use InteractsWithMedia;
         public function user(){
             return $this->belongsTo(User::class);
             }
