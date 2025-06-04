@@ -19,13 +19,13 @@ const items = [
     icon: Home,
   },
   {
-    title: "coaches",
+    title: "Coaches",
     url: route('coaches.index'),
     icon: Inbox,
   },
   {
-    title: "Calendar",
-    url: "#",
+    title: "Customers",
+    url: route('customers.index'),
     icon: Calendar,
   },
   {
