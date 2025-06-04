@@ -12,6 +12,14 @@ export interface Coach {
     
     }
 
+export interface Customer {
+    id: number;
+    user: User;
+    height: number;
+    weight: number;
+    
+    }
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
