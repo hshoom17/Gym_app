@@ -30,7 +30,7 @@ export default function Index({ customers }: { customers: Customer[] }) {
                       <h2 className="text-xl font-semibold leading-tight text-gray-800">Dashboard</h2>}>
                   <Head title="Dashboard" />
                   <div className={'mt-8'}>
-                  <Link className={buttonVariants({ variant: 'outline' })} href="/Customers/create">
+                  <Link className={buttonVariants({ variant: 'outline' })} href="/customers/create">
                           Create Customer
                       </Link>
                       

@@ -47,7 +47,7 @@ class CustomerController extends Controller
             'status' => UserStatus::ACTIVE->value,
 
         ]);
-        $customer= $user->customer()->create();
+        $customer= $user->customers()->create();
 
 
         
