@@ -5,10 +5,12 @@ namespace App\Models;
 use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use PhpParser\Node\Expr\Cast;
 
 class WorkoutSession extends Model
-{   use HasFactory;
+{   use SoftDeletes, HasFactory, Notifiable;
     protected function casts(): array
     {
         return [
