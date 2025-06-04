@@ -5,11 +5,12 @@ namespace App\Models;
 use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Product extends Model
 {       
-    use HasFactory;
+    use SoftDeletes, HasFactory, Notifiable;
         public function branch(){
             return $this->belongsTo(Branch::class);//->where('role',UserRoles::BRANCH);
     }

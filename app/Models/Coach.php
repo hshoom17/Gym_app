@@ -7,10 +7,12 @@ use App\Enums\UserRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Coach extends Model implements HasMedia
 {    
-    use SoftDeletes;
+    
+    use SoftDeletes, HasFactory, Notifiable;
     protected $fillable = [
             'CV',
             'branch_id',
