@@ -41,6 +41,7 @@ export default function Index({ coaches }: { coaches: Coach[] }) {
                       <TableRow>
                         <TableHead className="w-[100px]">Name</TableHead>
                         <TableHead>Email</TableHead>
+                        <TableHead>Branch</TableHead>
                         <TableHead>Phone</TableHead>
                         <TableHead>CV</TableHead>
                         <TableHead>Action</TableHead>
@@ -51,8 +52,17 @@ export default function Index({ coaches }: { coaches: Coach[] }) {
                           <TableRow key={coach.user.id}>
                               <TableCell>{coach.user.en_name}</TableCell>
                               <TableCell>{coach.user.email}</TableCell>
+                              <TableCell>{coach.branch_id}</TableCell>
                               <TableCell>{coach.user.phone}</TableCell>
-                              <TableCell><img width="75" height="75" src={`${coach.CV}`} alt="" /> </TableCell>
+                              <TableCell>{ !coach.mediaFile
+                ? ''
+                : (
+                    <a href={coach.mediaFile.original_url} target="_blank">
+                        <img src={coach.mediaFile.original_url} className={'w-8 h-8'} />
+                    </a>
+                )
+        }
+        </TableCell> 
                               <TableCell className="flex flex-row gap-x-2 text-right">
              <Link className={buttonVariants({ variant: 'default' })}
                   href={`/coaches/${coach.id}/edit`}>

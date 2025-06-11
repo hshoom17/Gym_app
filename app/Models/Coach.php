@@ -18,7 +18,18 @@ class Coach extends Model implements HasMedia
             'branch_id',
             'user_id'
             ];   
+    protected $appends = [
+        'mediaFile'
+    ];
     use InteractsWithMedia;
+     public function getMediaFileAttribute()
+    {
+        if ($this->relationLoaded('media')) {
+            return $this->getFirstMedia();
+        }
+ 
+        return null;
+    }
         public function user(){
             return $this->belongsTo(User::class);
             }

@@ -22,7 +22,7 @@ class subscriptionFactory extends Factory
         return [
             'start_date'=>fake()->dateTime(),
             'end_date'=>fake()->dateTime(),
-            'price'=>fake()->randomFloat(),
+            'price'=>fake()->numberBetween(1, 100),
             'status'=>Arr::random(UserStatus::cases())->value,
         ];
     }

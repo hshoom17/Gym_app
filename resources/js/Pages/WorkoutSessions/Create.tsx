@@ -4,7 +4,6 @@ import InputError from '@/Components/InputError';
 import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
-import { Select } from '@/Components/ui/select';
 import { useRef, FormEventHandler } from 'react';
 
 type CreateCustomerForm = {

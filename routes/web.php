@@ -3,7 +3,9 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\WorkoutSessionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/coaches', CoachController::class,);
     Route::resource('/customers', CustomerController::class,);
+    Route::resource('/workoutSessions', WorkoutSessionController::class,);
+    Route::resource('/subscriptions', SubscriptionController::class,);
 });
 
 

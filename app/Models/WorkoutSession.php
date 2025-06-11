@@ -11,17 +11,23 @@ use PhpParser\Node\Expr\Cast;
 
 class WorkoutSession extends Model
 {   use SoftDeletes, HasFactory, Notifiable;
+    protected $fillable = [
+            'start_date',
+            'end_date',
+            'type',
+            'coach_id'
+            ];   
     protected function casts(): array
     {
         return [
-            
+ 
             'role' => UserRoles::class,
         ];
     }
         public function branch(){
             return $this->belongsTo(Branch::class);//->where('role',UserRoles::BRANCH);
             }
-        public function coaches(){
+        public function coach(){
             return $this->belongsTo(Coach::class);}
 
         public function customers(){

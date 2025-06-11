@@ -10,8 +10,17 @@ use Illuminate\Notifications\Notifiable;
 
 class Subscription extends Model
 {       use SoftDeletes, HasFactory, Notifiable;
+
+        protected $fillable = [
+                'start_date',
+                'end_date',
+                'type',
+                'price',
+                'status'
+            ];  
+
         public function customers(){
-        return $this->belongsToMany(Customer::class, 'customer_subscription','cumtomer_id', 'Subscription_id')
+        return $this->belongsToMany(Customer::class, 'customer_subscription','customer_id', 'Subscription_id')
         ->where('role',UserRoles::CUSTOMER);
         }
 }

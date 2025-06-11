@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings, Camera } from "lucide-react"
+import { CircleUserRound, Home, SquareUserRound, Ticket, Volleyball, Camera } from "lucide-react"
 
 import {
   Sidebar,
@@ -19,30 +19,26 @@ const items = [
     icon: Home,
   },
   {
-    title: "Coaches",
-    url: route('coaches.index'),
-    icon: Inbox,
-  },
-  {
     title: "Customers",
     url: route('customers.index'),
-    icon: Calendar,
+    icon: CircleUserRound,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Coaches",
+    url: route('coaches.index'),
+    icon: SquareUserRound,
   },
   {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    title: "Subscriptions",
+    url:  route('subscriptions.index'),
+    icon: Ticket,
   },
   {
-    title: "Galery",
-    url: "#",
-    icon: Camera,
+    title: "Workout Sessions",
+    url:  route('workoutSessions.index'),
+    icon: Volleyball,
   },
+
 ]
 
 export function AppSidebar() {

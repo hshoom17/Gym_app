@@ -6,11 +6,8 @@ use App\Enums\UserRoles;
 use App\Enums\UserStatus;
 use App\Http\Requests\Coach\StoreCoachRequest;
 use App\Http\Requests\Coach\UpdateCoachRequest;
-use App\Http\Resources\CoachResource;
-use App\Models\Branch;
 use App\Models\Coach;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
@@ -20,7 +17,7 @@ class CoachController extends Controller
     public function index()
     {
 
-        $coach=Coach::with(['user:id,email,phone,en_name','branch'])->get();
+        $coach=Coach::with(['user:id,email,phone,en_name','branch','media'])->get();
         // $branches=Branch::select('id','en_name')->get();
         // dd($coach->toArray());
         return Inertia::render('Coaches/Index', [
