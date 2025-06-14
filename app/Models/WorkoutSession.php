@@ -16,12 +16,18 @@ class WorkoutSession extends Model
             'end_date',
             'type',
             'coach_id'
-            ];   
+            ]; 
+    protected $attributes = [
+        'coach_id'  => 1,
+        'branch_id' => 1,
+    ];  
     protected function casts(): array
     {
         return [
  
             'role' => UserRoles::class,
+            'start_date' => 'dateTime',
+            'end_date' => 'dateTime',
         ];
     }
         public function branch(){

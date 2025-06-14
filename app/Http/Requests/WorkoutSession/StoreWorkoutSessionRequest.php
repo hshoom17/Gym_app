@@ -22,9 +22,10 @@ class StoreWorkoutSessionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_date',
-            'end_date',
-            'type'
+            'start_date'=>'date',
+            'end_date'=>'date',
+            'type',
+            // 'branch_id'
         ];
     }
 }

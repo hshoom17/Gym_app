@@ -5,47 +5,40 @@ import { Button } from '@/Components/ui/button';
 import { Input } from '@/Components/ui/input';
 import { Label } from '@/Components/ui/label';
 import { useRef, FormEventHandler } from 'react';
+import { format } from 'date-fns'; 
 
-type CreateCustomerForm = {
-    en_name?: string;
-    ar_name?: string;
-    email?: string;
-    password?: string;
-    dial_cod?: string;
-    phone?: string;
-    role?: string;
-    status?: string;
+type CreateWorkoutSessionForm = {
+    start_date ?: string;
+    end_date   ?: string;
+    type    ?: string;
+    branch_id ?: string;
     
     
 }
  
 export default function Create() {
     
-    const customerName = useRef<HTMLInputElement>(null);
-    const { data, setData, errors, post, reset, processing, progress } = useForm<Required<CreateCustomerForm>>({ 
-        en_name: '', 
-        ar_name:'',
-        email:'',
-        password:'',
-        dial_cod:'' ,
-        phone:'' ,
-        role:'' ,
-        status:'' ,
+    const workoutSessionName = useRef<HTMLInputElement>(null);
+    const { data, setData, errors, post, reset, processing, progress } = useForm<Required<CreateWorkoutSessionForm>>({ 
+       start_date: '',
+        end_date:   '',
+        type:    '',
+        branch_id: '',
         
     }); 
-     const createCustomer: FormEventHandler = (e) => {
+     const createWorkoutSession: FormEventHandler = (e) => {
         e.preventDefault();
  
-        post(route('customers.store'), {
+        post(route('workoutSessions.store'), {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
                 reset();
             },
             onError: (errors) => {
-                if (errors.en_name) {
-                    reset('en_name');
-                    customerName.current?.focus();
+                if (errors.start_date) {
+                    reset('start_date');
+                    workoutSessionName.current?.focus();
                 }
             },
         });
@@ -55,109 +48,73 @@ export default function Create() {
     return (
        <AuthenticatedLayout>
         
-             <Head title="Create Customer" />
+             <Head title="Create WorkoutSession" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <form onSubmit={createCustomer} className="space-y-6">
-                    <div className="grid gap-2">
-                        <Label htmlFor="en_name">Customer English Name *</Label>
+                <form onSubmit={createWorkoutSession} className="space-y-6">
+
+                    <div className="grid gap-2"> 
+        <Label htmlFor="name">Start Date</Label>
  
-                        <Input
-                            id="en_name"
-                            ref={customerName}
-                            value={data.en_name}
-                            onChange={(e) => setData('en_name', e.target.value)}
-                            className="mt-1 block w-full"
-                            name='en_name'
-                            required
-                        />
-                        <InputError message={errors.en_name} />
-                    </div>
+            <Input
+                id="start_date"
+                value={data.start_date}
+                onChange={(e) => setData('start_date', format(new Date(e.target.value), 'yyyy-MM-dd'))}
+                className="mt-1 block w-full"
+                type="date"
+        />
+ 
+            <InputError message={errors.start_date} />
+        </div> 
+
+                   <div className="grid gap-2"> 
+        <Label htmlFor="name">End Date</Label>
+ 
+           <Input
+                        id="end_date"
+                        value={data.end_date}
+                        onChange={(e) => setData('end_date', format(new Date(e.target.value), 'yyyy-MM-dd'))}
+                        className="mt-1 block w-full"
+                        type="date"
+             />
+ 
+        <InputError message={errors.end_date} />
+    </div> 
 
                     <div className="grid gap-2">
-                        <Label htmlFor="ar_name">Customer Arabic Name *</Label>
+                        <Label htmlFor="type">WorkoutSession Type *</Label>
  
                         <Input
-                            id="ar_name"
-                            ref={customerName}
-                            value={data.ar_name}
-                            onChange={(e) => setData('ar_name', e.target.value)}
+                            id="type"
+                            ref={workoutSessionName}
+                            value={data.type}
+                            onChange={(e) => setData('type', e.target.value)}
                             className="mt-1 block w-full"
-                            name='ar_name'
-                            required
+                            name='type'
+                            
                         />
-                        <InputError message={errors.ar_name} />
-                    </div>
-
-                    <div className="grid gap-2">
-                        <Label htmlFor="email">Customer Email *</Label>
- 
-                        <Input
-                            id="email"
-                            ref={customerName}
-                            value={data.email}
-                            onChange={(e) => setData('email', e.target.value)}
-                            className="mt-1 block w-full"
-                            name='email'
-                            required
-                        />
-                        <InputError message={errors.en_name} />
-                    </div>
-
-                    <div className="grid gap-2">
-                        <Label htmlFor="password">Customer password *</Label>
- 
-                        <Input
-                            id="password"
-                            ref={customerName}
-                            value={data.password}
-                            onChange={(e) => setData('password', e.target.value)}
-                            className="mt-1 block w-full"
-                            name='password'
-                            required
-                        />
-                        <InputError message={errors.en_name} />
+                        <InputError message={errors.type} />
                     </div>
 
                     {/* <div className="grid gap-2">
-                     <Label htmlFor="CV">CV</Label>
- 
-                            <Input
-                                id="CV"
-                                onChange={(e) => setData('CV', e.target.files[0])}
-                                className="mt-1 block w-full"
-                                type="file"
-                            />
-                        
-                            {progress && (
-                                <progress value={progress.percentage} max="100">
-                                    {progress.percentage}%
-                                </progress>
-                            )}
-                        
-                            <InputError message={errors.CV} />
-                        </div> */}
-
-                        {/* <div className="grid gap-2">
-                        <Label htmlFor="branch">Customer branch *</Label>
+                        <Label htmlFor="type">WorkoutSession Branch *</Label>
  
                         <Input
-                            id="branch"
-                            ref={customerName}
-                            value={data.branch}
-                            onChange={(e) => setData('branch', e.target.value)}
+                            id="branch_id"
+                            ref={workoutSessionName}
+                            value={data.branch_id}
+                            onChange={(e) => setData('branch_id', e.target.value)}
                             className="mt-1 block w-full"
-                            name='branch'
-                            required
+                            name='branch_id'
+                            
                         />
-                        <InputError message={errors.branch} />
+                        <InputError message={errors.branch_id} />
                     </div> */}
- 
-                        
 
-                  
+
+                   
  
                     <div className="flex items-center gap-4">
-                        <Button disabled={processing}>Create Customer</Button>
+                        <Button disabled={processing}>Create WorkoutSession</Button>
                     </div>
                 </form>
             </div>
