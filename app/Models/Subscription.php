@@ -18,6 +18,15 @@ class Subscription extends Model
                 'price',
                 'status'
             ];  
+        protected function casts(): array
+    {
+        return [
+ 
+            
+            'start_date' => 'date',
+            'end_date' => 'date',
+        ];
+    }
 
         public function customers(){
         return $this->belongsToMany(Customer::class, 'customer_subscription','customer_id', 'Subscription_id')

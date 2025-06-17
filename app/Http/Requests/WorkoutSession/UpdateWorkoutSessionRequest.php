@@ -22,8 +22,8 @@ class UpdateWorkoutSessionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'start_date',
-            'end_date',
+            'start_date'=>'date',
+            'end_date'=>'date',
             'type'
         ];
     }

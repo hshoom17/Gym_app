@@ -12,6 +12,7 @@ import {
 } from "@/Components/ui/table";
 import { Button, buttonVariants } from "@/Components/ui/button";
 import { toast } from 'sonner';
+import { format } from 'date-fns'; 
 
 export default function Index({ workoutSessions }: { workoutSessions: WorkoutSession[] }) {
   const deleteWorkoutSession = (id: number) => { 
@@ -49,8 +50,8 @@ export default function Index({ workoutSessions }: { workoutSessions: WorkoutSes
                     <TableBody>
                         {workoutSessions.map((workoutSession) => (
                           <TableRow key={workoutSession.id}>
-                            <TableCell>{workoutSession.start_date}</TableCell>
-                              <TableCell>{workoutSession.end_date}</TableCell>
+                             <TableCell>{workoutSession.start_date ? format(workoutSession.start_date, 'PPP') : ''}</TableCell> 
+                             <TableCell>{workoutSession.end_date ? format(workoutSession.end_date, 'PPP') : ''}</TableCell> 
                               <TableCell>{workoutSession.type}</TableCell>
                               <TableCell>{workoutSession.coach.user.en_name}</TableCell>
                               <TableCell className="flex flex-row gap-x-2 text-right">
