@@ -46,6 +46,7 @@ class SubscriptionController extends Controller
         return Inertia::render('Subscriptions/Edit', [
             'subscription' => $subscription,
 
+            
         ]);
     }
  
