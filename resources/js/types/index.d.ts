@@ -3,6 +3,7 @@ export interface User {
     en_name: string;
     email: string;
     phone : string;
+    status  : string;
     email_verified_at?: string;
 }
 export interface Coach {
