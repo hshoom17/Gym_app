@@ -14,7 +14,8 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/Components/ui/select"
+} from "@/Components/ui/select";
+import { format } from 'date-fns'; 
 
 type CreateSubscriptionForm = {
     start_date ?: string;
@@ -65,15 +66,13 @@ export default function Create({ status }: { status: Status[] }) {
                     <div className="grid gap-2">
                         <Label htmlFor="start_date">Subscription start_date </Label>
  
-                        <Input
-                            id="start_date"
-                            ref={subscriptionName}
-                            value={data.start_date}
-                            onChange={(e) => setData('start_date', e.target.value)}
-                            className="mt-1 block w-full"
-                            name='start_date'
-                            required
-                        />
+                      <Input
+                id="start_date"
+                value={data.start_date}
+                onChange={(e) => setData('start_date', format(new Date(e.target.value), 'yyyy-MM-dd'))}
+                className="mt-1 block w-full"
+                type="date"
+        />
                         <InputError message={errors.start_date} />
                     </div>
 
@@ -81,15 +80,13 @@ export default function Create({ status }: { status: Status[] }) {
                     <div className="grid gap-2">
                         <Label htmlFor="end_date">Subscription end_date </Label>
  
-                        <Input
-                            id="end_date"
-                            ref={subscriptionName}
-                            value={data.end_date}
-                            onChange={(e) => setData('end_date', e.target.value)}
-                            className="mt-1 block w-full"
-                            name='end_date'
-                            required
-                        />
+                       <Input
+                        id="end_date"
+                        value={data.end_date}
+                        onChange={(e) => setData('end_date', format(new Date(e.target.value), 'yyyy-MM-dd'))}
+                        className="mt-1 block w-full"
+                        type="date"
+             />
                         <InputError message={errors.end_date} />
                     </div>
 
@@ -103,7 +100,7 @@ export default function Create({ status }: { status: Status[] }) {
                             onChange={(e) => setData('price', e.target.value)}
                             className="mt-1 block w-full"
                             name='price'
-                            required
+                            
                         />
                         <InputError message={errors.price} />
                     </div>

@@ -26,8 +26,8 @@ class WorkoutSession extends Model
         return [
  
             'role' => UserRoles::class,
-            'start_date' => 'dateTime',
-            'end_date' => 'dateTime',
+            'start_date' => 'date',
+            'end_date' => 'date',
         ];
     }
         public function branch(){

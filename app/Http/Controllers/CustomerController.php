@@ -20,7 +20,7 @@ class CustomerController extends Controller
     public function index()
     {
 
-        $customer=Customer::with(['user:id,email,phone,en_name',])->get();
+        $customer=Customer::with(['user:id,email,phone,en_name,status',])->get();
         // $branches=Branch::select('id','en_name')->get();
         // dd($customer->toArray());
         return Inertia::render('Customers/Index', [

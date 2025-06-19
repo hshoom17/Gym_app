@@ -42,6 +42,7 @@ export default function Index({ customers }: { customers: Customer[] }) {
                         <TableHead className="w-[100px]">Name</TableHead>
                         <TableHead>Email</TableHead>
                         <TableHead>Phone</TableHead>
+                        <TableHead>Status</TableHead>
                         <TableHead>Action</TableHead>
                       </TableRow>
                     </TableHeader>
@@ -51,6 +52,7 @@ export default function Index({ customers }: { customers: Customer[] }) {
                               <TableCell>{customer.user.en_name}</TableCell>
                               <TableCell>{customer.user.email}</TableCell>
                               <TableCell>{customer.user.phone}</TableCell>
+                              <TableCell>{customer.user.status}</TableCell>
                               <TableCell className="flex flex-row gap-x-2 text-right">
              <Link className={buttonVariants({ variant: 'default' })}
                   href={`/customers/${customer.id}/edit`}>

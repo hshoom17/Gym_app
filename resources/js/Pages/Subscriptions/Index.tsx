@@ -12,6 +12,7 @@ import {
 } from "@/Components/ui/table";
 import { Button, buttonVariants } from "@/Components/ui/button";
 import { toast } from 'sonner';
+import { format } from 'date-fns'; 
 
 export default function Index({ subscriptions }: { subscriptions: Subscription[] }) {
   const deleteSubscription = (id: number) => { 
@@ -49,8 +50,8 @@ export default function Index({ subscriptions }: { subscriptions: Subscription[]
                     <TableBody>
                         {subscriptions.map((subscription) => (
                           <TableRow key={subscription.id}>
-                            <TableCell>{subscription.start_date}</TableCell>
-                              <TableCell>{subscription.end_date}</TableCell>
+                            <TableCell>{subscription.start_date ? format(subscription.start_date, 'PPP') : ''}</TableCell> 
+                            <TableCell>{subscription.end_date ? format(subscription.end_date, 'PPP') : ''}</TableCell> 
                               <TableCell>{subscription.price}</TableCell>
                               <TableCell>{subscription.status}</TableCell>
                               <TableCell className="flex flex-row gap-x-2 text-right">
